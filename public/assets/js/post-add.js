@@ -38,3 +38,53 @@ $('#addForm').on('submit', function () {
   });
   return false;
 });
+
+var id = getUrlParams('id');
+
+if (id != -1) {
+  $.ajax({
+    type: 'get',
+    url: '/posts/' + id,
+    success: function (res) {
+      $.ajax({
+        type: 'get',
+        url: '/categories',
+        success: function (response) {
+          res.response = response;
+          var html = template('modifyTpl', res);
+          $('#formBox').html(html);
+        }
+      });
+
+    }
+  })
+}
+
+//从浏览器地址栏中获取查询参数
+function getUrlParams(name) {
+  var paramsArry = location.search.substr(1).split('&');
+
+  for (var i = 0; i < paramsArry.length; i++) {
+    var params = paramsArry[i].split('=');
+    if (params[0] == name) {
+      return params[1];
+    }
+  }
+  return -1;
+  //  console.log(each(params.join('=')));
+}
+
+$('#formBox').on('submit', '#modifyForm', function () {
+  var formData = $(this).serialize();
+  var id = $(this).attr('data-id');
+  $.ajax({
+    type: 'put',
+    url: '/posts/' + id,
+    data: formData,
+    success: function () {
+      location.href = 'posts.html';
+    }
+
+  })
+  return false;
+});
