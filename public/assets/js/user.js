@@ -72,7 +72,7 @@ $('#modifyBox').on('submit', '#modifyForm',
             type: 'put',
             url: '/users/' + id,
             data: formData,
-            success: function (response) {
+            success: function () {
                 location.reload();
             }
         })
