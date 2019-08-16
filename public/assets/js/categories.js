@@ -59,3 +59,34 @@ $("#categoryBox").on('click', '.delete', function () {
     });
   }
 });
+
+
+$('#checkAll').on('change', function () {
+  var result = $(this).prop('checked');
+  $('#categoryBox input:checkbox').prop('checked', result);
+  $('#deleteMany').attr('disabled', !result);
+});
+
+$('#categoryBox').on('change', 'input:checkbox', function () {
+  var checkedLen = $('#categoryBox input:checkbox:checked').length;
+  $('#checkAll').prop('checked', $('#categoryBox input:checkbox').length == checkedLen);
+  $('#deleteMany').attr('disabled', checkedLen <= 0);
+});
+
+
+$('#deleteMany').click(function () {
+  var arr = [];
+  var checkedUser = $('#categoryBox input:checked');
+  checkedUser.each(function(index, res){
+     arr.push($(res).attr('data-id'));
+  });
+  if (confirm('是否确认批量删除')) {
+      $.ajax({
+          type: 'delete',
+          url: '/categories/' + arr.join('-'),
+          success: function () {
+              location.reload();
+          }
+      });
+  };
+});

@@ -97,6 +97,7 @@ $('#userBox').on('click', '.delete', function () {
 $('#checkAll').on('change', function () {
     var result = $(this).prop('checked');
     $('#userBox input:checkbox').prop('checked', result);
+    $('#deleteMany').attr('disabled', !result);
 });
 $('#userBox').on('change', 'input:checkbox', function () {
     var checkedLen = $('#userBox input:checkbox:checked').length;
