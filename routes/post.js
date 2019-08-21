@@ -4,7 +4,7 @@ post.post('/', require('./actions/post/create'));
 // 根据ID删除文章
 post.delete('/:id', require('./actions/post/findByIdAndDelete'));
 // 查询所有文章
-post.get('/', require('./actions/post/find'));
+post.get('/', require('./actions/post/findSelect'));
 // 查询文章数量
 post.get('/count', require(('./actions/post/count')));
 // 获取最新发布文章(按照发布时间排序)
@@ -23,6 +23,8 @@ post.get('/search/:key', require('./actions/post/search'))
 post.get('/:id', require('./actions/post/findById'));
 // 根据ID修改文章
 post.put('/:id', require('./actions/post/findByIdAndUpdate'));
+
+post.get('/select', require('./actions/post/findSelect'));
 
 
 module.exports = post;

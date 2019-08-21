@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
 	const id = req.params['id'];
 	// 验证模型
 	const schema = Joi.string().required().regex(/^[0-9a-fA-F]{24}$/).error(new Error('评论id不符合格式'))
+
 	// 验证
 	const { error } = Joi.validate(id, schema)
 	// 数据格式没有通过验证
@@ -17,7 +18,7 @@ module.exports = async (req, res) => {
 	let comment = await Comment.findByIdAndDelete(id);
 	// 响应
 	res.send(comment);
-	
+
 };
 
 

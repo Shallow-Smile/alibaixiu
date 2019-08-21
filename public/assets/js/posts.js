@@ -9,12 +9,6 @@ $.ajax({
   }
 });
 
-//日期转换
-function formateDate(date) {
-  var date = new Date(date);
-  return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-};
-
 //分页操作
 function changePage(page) {
   $.ajax({
@@ -75,3 +69,34 @@ $('#formData').on('click', '.delete', function () {
   };
 });
 
+
+console.log('bug   路由中没有批量删除验证 无法进行批量删除操作')
+// $('#checkAll').on('change', function () {
+//   var result = $(this).prop('checked');
+//   $('#formData input:checkbox').prop('checked', result);
+//   $('#deleteMany').attr('disabled', !result);
+
+// });
+// $('#formData').on('change', 'input:checkbox', function () {
+//   var checkedLen = $('#formData input:checkbox:checked').length;
+//   $('#checkAll').prop('checked', $('#formData input:checkbox').length == checkedLen);
+//   $('#deleteMany').attr('disabled', checkedLen <= 0);
+// });
+
+// //批量删除操作
+// $('#deleteMany').click(function () {
+//   var arr = [];
+//   var checkedUser = $('#formData input:checked');
+//   checkedUser.each(function (index, res) {
+//     arr.push($(res).attr('data-id'));
+//   });
+//   if (confirm('是否确认批量删除')) {
+//     $.ajax({
+//       type: 'delete',
+//       url: '/posts/' + arr.join('-'),
+//       success: function () {
+//         location.reload();
+//       }
+//     });
+//   };
+// });

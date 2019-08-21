@@ -8,7 +8,7 @@ $.ajax({
   }
 });
 
-$('#feature').on('change', function () {
+$('#feature','#features').on('change', function () {
   var file = this.files[0];
   var formData = new FormData();
   formData.append('cover', file);
@@ -32,8 +32,10 @@ $('#addForm').on('submit', function () {
     type: 'post',
     url: '/posts',
     data: formData,
-    success: function () {
+    success: function (res) {
       location.href = "/admin/posts.html"
+      console.log(res);
+      
     }
   });
   return false;
@@ -76,13 +78,15 @@ function getUrlParams(name) {
 
 $('#formBox').on('submit', '#modifyForm', function () {
   var formData = $(this).serialize();
-  var id = $(this).attr('data-id');
+ var id = $(this).attr('data-id');
   $.ajax({
     type: 'put',
     url: '/posts/' + id,
     data: formData,
-    success: function () {
-      location.href = 'posts.html';
+    success: function (res) {
+      // location.href = 'posts.html';
+      console.log(res);
+      
     }
 
   })

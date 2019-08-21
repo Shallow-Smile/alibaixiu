@@ -17,7 +17,7 @@ $('#userForm').on('submit', function () {
 
 //头像选择
 $('#modifyBox').on('change', '#avatar', function () {
-    // console.log(this.files[0]);
+    console.log(this.files[0]);
     var formData = new FormData();
     formData.append('avatar', this.files[0]);
     $.ajax({

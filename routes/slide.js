@@ -7,6 +7,8 @@ slide.post('/', require('./actions/slide/create'));
 slide.delete('/:id', require('./actions/slide/findByIdAndDelete'));
 // 获取轮播图
 slide.get('/', require('./actions/slide/find'))
+//轮播图链接下拉菜单
+
 
 // 导出路由
 module.exports = slide;
